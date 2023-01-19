@@ -7,45 +7,39 @@ import {
   Text,
   View,
 } from "react-native";
+import ResturantsInfoCardComp from '../components/resturants-info-card-comp';
+import styled from 'styled-components/native';
 
+const SafeArea=styled(SafeAreaView)`
+  flex:1;
+  marginTop:${StatusBar.currentHeight}px; 
+`
+const SearchContainer=styled.View`
+  padding:${(prop)=>prop.theme.space[3]};
+`
+const ResturantInfoCardListContainer=styled.View`
+  flex:1;
+  padding:${(prop)=>prop.theme.space[3]};
+  
+`
 export const ResturantsScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const onChangeSearch = (query) => {
     setSearchQuery(query);
   };
   return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.search}>
+      <SafeArea >
+        <SearchContainer>
           <Searchbar
             placeholder="Search"
             onChangeText={onChangeSearch}
             value={searchQuery}
           />
-        </View>
+        </SearchContainer>
 
-        <View style={styles.header}>
-          <Text>Text</Text>
-        </View>
-      </SafeAreaView>
+        <ResturantInfoCardListContainer>
+          <ResturantsInfoCardComp/>
+        </ResturantInfoCardListContainer>
+      </SafeArea>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight,
-  },
-  innerContainer: {
-    backgroundColor: "green",
-    width: "100%",
-    padding: 16,
-  },
-  header: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: "blue",
-  },
-  search: {
-    padding: 16,
-  },
-});
