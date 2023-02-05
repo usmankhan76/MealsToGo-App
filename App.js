@@ -19,6 +19,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View,Text } from "react-native";
 import { SafeArea } from "./src/components/utility/safe-area-component";
 import { Spacer } from "./src/components/spacer/spacer-comp";
+import { ResturantProvider } from "./src/services/resturants/resturants-context";
 // const isAndorid = Platform.OS === "android";
 // const isIOS = Platform.OS === "ios";
 
@@ -43,7 +44,7 @@ export default function App() {
       tabBarIcon:({size,color})=>{
         return <Ionicons name={iconName} size={size} color={color} />
       },
-      tabBarActiveTintColor: 'blue',
+      tabBarActiveTintColor: 'darkblue',
       tabBarInactiveTintColor: 'gray',     
     }}
     
@@ -74,7 +75,7 @@ function SettingScreen() {
       {/* <ResturantsScreen /> */}
 
 
-      
+      <ResturantProvider>
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={provideIcons}
@@ -87,7 +88,7 @@ function SettingScreen() {
 
       </NavigationContainer>
       <ExpoStatusBar style="auto" />
-
+      </ResturantProvider>
     </ThemeProvider>
     </>
   );
