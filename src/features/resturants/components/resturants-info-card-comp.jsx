@@ -23,10 +23,12 @@ const ResturantsInfoCardComp = ({resturant={}}) => {
         vicinity='Canal Road, Faisalabad',
         isOpenNow=true,
         rating=4,
-        isClosedTemporarly=true}=resturant
+        isClosedTemporarly=true,
+        placeId
+      }=resturant
     const starsArray=Array.from(new Array(Math.floor(rating)))// fisst we creat array from rating and use floor method to avoid floating numbers
   return (
-    <ResturantCard  elevation={5}>
+    <ResturantCard  elevation={5} >
       <Card.Cover source={{ uri:photos[0]}} />
       <Info>
         <Text variant="label" >{name}</Text>

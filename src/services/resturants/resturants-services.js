@@ -1,10 +1,11 @@
 import camelize from "camelize";
 import { mockImages, mocks } from "./mock"
 
-export const resturantsRequest=(location="37.7749295,-122.4194155")=>{
+export const resturantsRequest=(location)=>{
+   
     return new Promise((resolve, reject) => {
         const mock=mocks[location]
-        console.log("this is mock",mock)
+        // console.log("this is mock",mock)
         if(!mock) reject("Not Found Then Location");
         resolve(mock)
     })
@@ -23,7 +24,4 @@ export const transformFucntion=({results=[]})=>{
     return camelize(updatedResults)
 }
 
-// resturantsRequest()
-// .then(transformFucntion)
-// .then(res=>console.log('result of reques',res))
-// .catch((err)=>console.log('error happen'))
+
