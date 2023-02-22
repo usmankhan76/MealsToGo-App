@@ -5,8 +5,12 @@ import { LocationContext } from '../../../services/location/location-context'
 
 const SearchContainer= styled.View`
   padding:${(prop)=>prop.theme.space[3]};
+  position:absolute;
+  z-index:999;
+  top:40px;
+  width:100%
 `
-const Search = () => {
+const MapSearchComp = () => {
     const {isLoadinglocation,keyword,onSearch}=useContext(LocationContext)
     const [searchQuery, setSearchQuery] = useState(keyword);
     const onChangeSearch = (query) => { 
@@ -14,12 +18,13 @@ const Search = () => {
     
   };
 useEffect(()=>{
-  setSearchQuery(keyword)
+    setSearchQuery(keyword)
 },[keyword])
   return (
         <SearchContainer>
           <Searchbar
-            placeholder="Search"
+            icon={"map"}
+            placeholder="Search Location"
             onChangeText={onChangeSearch}
             value={searchQuery}
             loading={isLoadinglocation}
@@ -30,4 +35,4 @@ useEffect(()=>{
   )
 }
 
-export default Search
+export default MapSearchComp
