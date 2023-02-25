@@ -23,8 +23,8 @@ const CompactWebImage = styled(WebView)`
 
 const isAndorid=Platform.OS==='android'
 
-const CompactRestaurantInfoComp = ({restaurant}) => {
-    const Image=isAndorid?CompactWebImage:CompactImage
+const CompactRestaurantInfoComp = ({restaurant,isMap}) => {
+    const Image=(isAndorid && isMap )?CompactWebImage:CompactImage
   return (
     <Item>
         <Image source={{uri:restaurant.photos[0]}}/>

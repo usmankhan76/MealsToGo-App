@@ -11,6 +11,8 @@ import { resturantsRequest } from '../../../services/resturants/resturants-servi
 import { ResturantContext } from '../../../services/resturants/resturants-context';
 import { LocationContext } from '../../../services/location/location-context';
 import Search from '../components/search-comp';
+import FavouritesBarComp from '../../../components/favourites/favourites-bar-comp';
+import { FavouritesContext } from '../../../services/favourites/favourites-context';
 
 
 
@@ -26,10 +28,23 @@ const ResturantCardList= styled(FlatList).attrs({
 export const ResturantsScreen = ({navigation}) => {
   
   const {resturants,isLoading,error}=useContext(ResturantContext)
+  const {favouritesList}=useContext(FavouritesContext)    
+
   // console.log("This is the resturants",resturants)
+  const [isFavouritesToggle,setisFavouritesToggle]=useState(false);
   return (
       <SafeArea >
-        <Search/>
+        <Search 
+          isFavouritesToggle={isFavouritesToggle} 
+          onFavouritesToggle={()=>setisFavouritesToggle(!isFavouritesToggle)} />
+
+        {isFavouritesToggle && (
+          <FavouritesBarComp 
+            favouritesList={favouritesList} 
+            navigation={navigation}
+            // onNavigate={navigation.navigate}
+            />)}
+
         {isLoading ? 
          <LoadingContainer >
             <ActivityIndicator  animating="true" color='blue' size={'large'}/>

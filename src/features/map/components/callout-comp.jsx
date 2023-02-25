@@ -5,7 +5,7 @@ import CompactRestaurantInfoComp from '../../../components/restaurant/compact-re
 
 const CalloutComp = ({restaurant}) => {
   return (
-   <CompactRestaurantInfoComp restaurant={restaurant}/>
+   <CompactRestaurantInfoComp isMap={true} restaurant={restaurant}/>
   )
 }
 

@@ -20,6 +20,7 @@ import { ResturantProvider } from "./src/services/resturants/resturants-context"
 import { LocationProvider } from "./src/services/location/location-context";
 import AppNavigator from "./src/infrastructure/navigation/app-navigator";
 import Navigation from "./src/infrastructure/navigation";
+import { FavouritesContextProvider } from './src/services/favourites/favourites-context';
 // const isAndorid = Platform.OS === "android";
 // const isIOS = Platform.OS === "ios";
 
@@ -39,15 +40,14 @@ export default function App() {
     <>
     <ThemeProvider theme={theme}>
       {/* <ResturantsScreen /> */}
-
-      <LocationProvider>
-      
-      <ResturantProvider>
-      <Navigation/>
-      
-      <ExpoStatusBar style='auto'   />
-      </ResturantProvider>
-      </LocationProvider>
+      <FavouritesContextProvider>
+        <LocationProvider>
+          <ResturantProvider>
+            <Navigation/>    
+            <ExpoStatusBar style='auto'   />
+          </ResturantProvider>
+        </LocationProvider>
+      </FavouritesContextProvider>
     </ThemeProvider>
     </>
   );

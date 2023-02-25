@@ -12,6 +12,7 @@ import {
   StarsAndOpenContainer, 
   StarsContainer
  } from './resturants-info-card-style'
+import { FavouritesComp } from '../../../components/favourites/favourites-comp'
 
 const ResturantsInfoCardComp = ({resturant={}}) => {
     //qw  pass the empty object tor resturant because otherwise it will give us the undefined error
@@ -29,6 +30,7 @@ const ResturantsInfoCardComp = ({resturant={}}) => {
     const starsArray=Array.from(new Array(Math.floor(rating)))// fisst we creat array from rating and use floor method to avoid floating numbers
   return (
     <ResturantCard  elevation={5} >
+      <FavouritesComp restaurant={resturant}/>
       <Card.Cover source={{ uri:photos[0]}} />
       <Info>
         <Text variant="label" >{name}</Text>
