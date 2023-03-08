@@ -13,17 +13,12 @@ import { LocationContext } from '../../../services/location/location-context';
 import Search from '../components/search-comp';
 import FavouritesBarComp from '../../../components/favourites/favourites-bar-comp';
 import { FavouritesContext } from '../../../services/favourites/favourites-context';
+import { LoadingContainer, ResturantCardList } from '../components/resturants-list-style';
+import { FadeInView } from '../../../components/animations/fade-animation';
 
 
 
-const LoadingContainer= styled.View`
-  position:absolute;
-  top:50%;
-  left:40%
-`
-const ResturantCardList= styled(FlatList).attrs({
-  contentContainerStyle:{padding:16}})``;
-// .attrs is called function methods .attributes and this attribute give access us to props of Flatlist
+
 
 export const ResturantsScreen = ({navigation}) => {
   
@@ -57,7 +52,10 @@ export const ResturantsScreen = ({navigation}) => {
               <Pressable onPress={()=>navigation.navigate("ResturantDetail",{item})}>
                 {/* we can also change Pressabel to TouchableOpacity */}
                 <Spacer position='bottom' size='large'>
+                  <FadeInView>
+
                   <ResturantsInfoCardComp resturant={item}/>
+                  </FadeInView>
                 </Spacer>
               </Pressable> 
             )}
