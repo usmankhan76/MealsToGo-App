@@ -25,7 +25,7 @@ export const LocationProvider=({children})=>{
         .then(result=>{
             setIsLoading(false);
             setLocation(result);
-            console.log("city and location:- ",keyword,result)
+            // console.log("city and location:- ",keyword,result)
         })
         .catch((err) => {
             setIsLoading(false)

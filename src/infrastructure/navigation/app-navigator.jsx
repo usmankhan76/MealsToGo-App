@@ -1,5 +1,5 @@
-import React from 'react'
-import { NavigationContainer } from "@react-navigation/native";
+import React, { useContext } from 'react'
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from '@expo/vector-icons';
 import { ResturantsScreen } from '../../features/resturants/screens/resturants-screen';
@@ -7,6 +7,12 @@ import { View,Text } from "react-native";
 import {SafeArea} from '../../components/utility/safe-area-component'
 import ResturatnsNavigator from './resturatns-navigator';
 import MapScreen from '../../features/map/map-screens/map-screen';
+import { Button } from 'react-native-paper';
+import { AuthenticationContext } from '../../services/authentication/authentication-context';
+import { auth } from '../../firebase';
+import { FavouritesContextProvider } from '../../services/favourites/favourites-context';
+import { LocationProvider } from '../../services/location/location-context';
+import { ResturantProvider } from '../../services/resturants/resturants-context';
 
 
 const AppNavigator = () => {
@@ -28,11 +34,13 @@ const AppNavigator = () => {
         }}
 
     function SettingScreen() {
+        const {onLogout}=useContext(AuthenticationContext)
         return (
             <SafeArea>
 
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Settings!</Text>
+            <Button title="logout" mode='contained' onPress={() => onLogout()} >Log Out</Button>
             </View>
             </SafeArea>
         );
@@ -44,18 +52,27 @@ const AppNavigator = () => {
 //       </View>
 //     );
 // }
+
+    
+    
   return (
-    <NavigationContainer >
-        <Tab.Navigator
-          screenOptions={provideIcons}
-          >
-            <Tab.Screen name="Resturants" component={ResturatnsNavigator}/>
-            <Tab.Screen name="Map" component={MapScreen}/>
-            <Tab.Screen name="Setting" component={SettingScreen}/>
+    <FavouritesContextProvider>
+          <LocationProvider>
+            <ResturantProvider>
+                 <Tab.Navigator
+                    screenOptions={provideIcons}
+                    >
+                    <Tab.Screen name="Resturants" component={ResturatnsNavigator}/>
+                    <Tab.Screen name="Map" component={MapScreen}/>
+                    <Tab.Screen name="Setting" component={SettingScreen}/>
 
-        </Tab.Navigator>
+                </Tab.Navigator>
+            </ResturantProvider>
+          </LocationProvider>
+        </FavouritesContextProvider>
+       
 
-      </NavigationContainer>
+      
   )
 }
 

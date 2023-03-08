@@ -31,6 +31,6 @@ export const Spacer=({position,size,children})=>{
     )
 }
 Spacer.defaultProps={
-    positon:"top",
+    position:"top",
     size:"small"
 }
