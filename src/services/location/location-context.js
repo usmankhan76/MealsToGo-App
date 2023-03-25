@@ -23,9 +23,9 @@ export const LocationProvider=({children})=>{
         locationRequest(keyword.toLowerCase())
         .then(transformLocation)
         .then(result=>{
+            console.log("city and location:- ",keyword,result)
             setIsLoading(false);
             setLocation(result);
-            // console.log("city and location:- ",keyword,result)
         })
         .catch((err) => {
             setIsLoading(false)
